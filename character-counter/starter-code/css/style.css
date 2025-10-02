@@ -1,0 +1,186 @@
+:root {
+  --bg-color: #0d0d14;
+  --second-bg-color: #21222c;
+  --primary-color: #fff;
+  --border-color: #434346;
+  /** font family **/
+  --body-font: "DM Sans", sans-serif;
+  /** card colors **/
+  --card-purple: #c19af3;
+  --card-orange: #ff9f1c;
+  --card-red: #ff6b6b;
+}
+
+[data-theme="light-theme"] {
+  --bg-color: #fff;
+  --second-bg-color: #dbdbdb;
+  --primary-color: #000;
+  --border-color: #888888;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 58px;
+  color: var(--primary-color);
+  text-align: center;
+  max-width: 50%;
+  margin: 0 auto;
+  line-height: 1.1;
+}
+
+html,
+body {
+  margin: 0 auto;
+  padding: 1.5rem;
+  font-family: var(--body-font);
+  background-color: var(--bg-color);
+  max-width: 1200px;
+  width: 100%;
+}
+
+.visually-hidden {
+  visibility: hidden;
+}
+
+/* Header */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2em;
+}
+
+.light-dark-toggle {
+  background: var(--second-bg-color);
+  padding: 0.75em;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Body */
+.container {
+  padding: 2em;
+}
+
+.form-group {
+  margin-top: 2rem;
+}
+
+/** Textarea **/
+#text-input {
+  width: 100%;
+  min-height: 200px;
+  background-color: var(--second-bg-color);
+  border: 1px solid var(--border-color);
+  color: var(--primary-color);
+  font-size: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+  resize: vertical;
+  outline: none;
+}
+
+/** Controls **/
+.controls {
+  display: flex;
+  justify-content: space-between;
+  color: var(--primary-color);
+  margin-top: 0.5rem;
+}
+
+.controls__options {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+
+.controls__options label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.controls__options input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 0.5rem;
+  position: relative;
+  top: 0;
+}
+
+/** Cards **/
+.counter-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+  margin-top: 2rem;
+}
+
+.counter-card {
+  border-radius: 10px;
+  padding: 2em;
+}
+
+.counter-card {
+  width: 100%;
+  height: 160px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  color: #000;
+  font-family: var(--body-font);
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+}
+
+.counter-card.purple {
+  background-color: var(--card-purple);
+  background-image: url("../assets/images/pattern-character-count.svg");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: auto 100%;
+  overflow: hidden;
+}
+
+.counter-card.red {
+  background: var(--card-red);
+  background-image: url("../assets/images/pattern-sentence-count.svg");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: auto 100%;
+  overflow: hidden;
+}
+
+.counter-card.orange {
+  background: var(--card-orange);
+  background-image: url("../assets/images/pattern-word-count.svg");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: auto 100%;
+  overflow: hidden;
+}
+
+.counter-value {
+  font-size: 4rem;
+}
+
+.counter-label {
+  font-size: 1.2rem;
+  font-weight: normal;
+}
