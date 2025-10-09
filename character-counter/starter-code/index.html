@@ -56,27 +56,47 @@
               Set Character Limit
             </label>
           </div>
-
           <div class="controls__info">
-            <span>Approx. reading time: 0 minute</span>
+            <span id="reading-time">Approx. reading time: 0 minute</span>
           </div>
         </div>
         <div class="counter-cards">
           <div class="counter-card purple">
-            <div class="counter-value">00</div>
+            <div class="counter-value" id="char-count">00</div>
             <div class="counter-label">Total Characters</div>
           </div>
           <div class="counter-card orange">
-            <div class="counter-value">00</div>
+            <div class="counter-value" id="word-count">00</div>
             <div class="counter-label">Word Count</div>
           </div>
           <div class="counter-card red">
-            <div class="counter-value">00</div>
+            <div class="counter-value" id="sentence-count">00</div>
             <div class="counter-label">Sentence Count</div>
           </div>
         </div>
+
+        <!-- Letter Density -->
+        <div class="letter-density">
+          <h2>Letter Density</h2>
+
+          <ul id="letter-density-list" class="ld-list"></ul>
+
+          <button
+            type="button"
+            id="ld-toggle"
+            class="ld-toggle"
+            aria-expanded="false"
+            aria-controls="letter-density-list"
+          >
+            See more
+            <span aria-hidden="true"
+              ><i class="fa-solid fa-angle-down"></i
+            ></span>
+          </button>
+        </div>
       </div>
     </main>
+
     <script src="./js/script.js"></script>
   </body>
 </html>

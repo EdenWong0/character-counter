@@ -106,19 +106,42 @@ body {
   cursor: pointer;
 }
 
+/* Base: hollow square */
 .controls__options input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
+  -moz-appearance: none;
   width: 16px;
   height: 16px;
-  border: 2px solid var(--border-color);
+  border: 2px solid var(--border-color, #434346);
   border-radius: 4px;
   background: transparent;
+  display: inline-grid;
+  place-content: center;
   cursor: pointer;
-  display: inline-block;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
   margin-right: 0.5rem;
-  position: relative;
-  top: 0;
+}
+
+/* White tick (hidden until checked) */
+.controls__options input[type="checkbox"]::after {
+  content: "";
+  width: 6px;
+  height: 10px;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(45deg) translateY(-1px);
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+/* Checked: blue background + white tick */
+.controls__options input[type="checkbox"]:checked {
+  background: #0d6efd; /* blue fill */
+  border-color: #0d6efd; /* blue outline */
+}
+.controls__options input[type="checkbox"]:checked::after {
+  opacity: 1;
 }
 
 /** Cards **/
@@ -183,4 +206,179 @@ body {
 .counter-label {
   font-size: 1.2rem;
   font-weight: normal;
+}
+
+/* Letter Density */
+.letter-density {
+  margin-top: 2rem;
+}
+
+.letter-density h2 {
+  color: var(--primary-color);
+}
+.ld-list {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+.ld-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ld-letter {
+  font-size: 18px;
+  width: 1.25rem;
+  letter-spacing: 0.02em;
+  color: var(--primary-color);
+}
+
+.ld-bar-rail {
+  flex: 1;
+  height: 10px;
+  background: var(--second-bg-color, #21222c);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.ld-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--accent-color, #b39dfa); /* purple */
+  border-radius: inherit;
+  transition: width 0.25s ease;
+}
+
+.ld-count {
+  font-size: 18px;
+  width: 6.5rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--primary-color);
+}
+
+/* Toggle sits UNDER the bars, left aligned */
+.ld-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1rem;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: var(--primary-color);
+  font-size: 18px;
+}
+.ld-toggle:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* ===== Character limit panel ===== */
+.char-limit {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.6rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--second-bg-color, #21222c);
+  border: 1px solid var(--border-color, #434346);
+  border-radius: 0.75rem;
+  width: fit-content;
+}
+
+.char-limit__label {
+  color: var(--primary-color, #fff);
+  opacity: 0.9;
+  font-weight: 600;
+}
+
+/* Number input (dark) */
+.char-limit__input {
+  width: 6rem;
+  padding: 0.35rem 0.55rem;
+  color: var(--primary-color, #fff);
+  background: #14151c;
+  border: 1px solid var(--border-color, #434346);
+  border-radius: 0.5rem;
+  font: inherit;
+  line-height: 1.1;
+  -moz-appearance: textfield;
+}
+.char-limit__input::-webkit-outer-spin-button,
+.char-limit__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.char-limit__input:focus {
+  outline: none;
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px color-mix(in oklab, #8b5cf6 35%, transparent);
+}
+
+/* Used/total counter */
+.char-limit__meter {
+  min-width: 4.2rem;
+  text-align: right;
+  color: var(--primary-color, #fff);
+  opacity: 0.85;
+  font-variant-numeric: tabular-nums;
+}
+
+/* State colors: near limit (amber), at/over (red) */
+.char-limit[data-state="near"] .char-limit__meter,
+.char-limit[data-state="near"] .char-limit__input {
+  color: #f59e0b;
+  border-color: #f59e0b;
+}
+
+.char-limit[data-state="over"] .char-limit__meter,
+.char-limit[data-state="over"] .char-limit__input {
+  color: #ef4444;
+  border-color: #ef4444;
+}
+
+/* Optional: make panel blend with your controls row */
+.controls__options {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 991px) {
+  h1 {
+    font-size: 42px;
+  }
+  .controls,
+  .controls__options {
+    flex-direction: column;
+  }
+
+  .controls {
+    gap: 1rem;
+  }
+  .controls__options {
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .counter-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .container,
+  .header-container {
+    padding: 0;
+  }
+  h1 {
+    max-width: 100%;
+    padding-top: 1em;
+  }
 }
