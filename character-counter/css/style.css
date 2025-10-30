@@ -2,20 +2,29 @@
   --bg-color: #0d0d14;
   --second-bg-color: #21222c;
   --primary-color: #fff;
+  --second-color: #b8b8b8;
   --border-color: #434346;
+  --checkbox-border-color: #fff;
+
   /** font family **/
   --body-font: "DM Sans", sans-serif;
+
   /** card colors **/
   --card-purple: #c19af3;
   --card-orange: #ff9f1c;
   --card-red: #ff6b6b;
+
+  --white: #fff;
+  --black: #000;
 }
 
-[data-theme="light-theme"] {
+[data-theme="light"] {
   --bg-color: #fff;
   --second-bg-color: #dbdbdb;
   --primary-color: #000;
+  --second-color: #000;
   --border-color: #888888;
+  --checkbox-border-color: #000;
 }
 
 * {
@@ -74,9 +83,9 @@ body {
 #text-input {
   width: 100%;
   min-height: 200px;
+  color: var(--primary-color);
   background-color: var(--second-bg-color);
   border: 1px solid var(--border-color);
-  color: var(--primary-color);
   font-size: 1rem;
   padding: 1rem;
   border-radius: 10px;
@@ -84,11 +93,15 @@ body {
   outline: none;
 }
 
+#text-input::placeholder {
+  color: var(--primary-color);
+}
+
 /** Controls **/
 .controls {
   display: flex;
   justify-content: space-between;
-  color: var(--primary-color);
+  color: var(--second-color);
   margin-top: 0.5rem;
 }
 
@@ -113,7 +126,7 @@ body {
   -moz-appearance: none;
   width: 16px;
   height: 16px;
-  border: 2px solid var(--border-color, #434346);
+  border: 1px solid var(--checkbox-border-color);
   border-radius: 4px;
   background: transparent;
   display: inline-grid;
@@ -128,8 +141,8 @@ body {
   content: "";
   width: 6px;
   height: 10px;
-  border-right: 2px solid #fff;
-  border-bottom: 2px solid #fff;
+  border-right: 2px solid var(--white);
+  border-bottom: 2px solid var(--white);
   transform: rotate(45deg) translateY(-1px);
   opacity: 0;
   transition: opacity 0.12s ease;
@@ -137,8 +150,8 @@ body {
 
 /* Checked: blue background + white tick */
 .controls__options input[type="checkbox"]:checked {
-  background: #0d6efd; /* blue fill */
-  border-color: #0d6efd; /* blue outline */
+  background: #0d6efd;
+  border-color: #0d6efd;
 }
 .controls__options input[type="checkbox"]:checked::after {
   opacity: 1;
@@ -165,7 +178,7 @@ body {
   flex-direction: column;
   justify-content: center;
   padding: 1rem;
-  color: #000;
+  color: var(--black);
   font-family: var(--body-font);
   font-weight: 600;
   position: relative;
@@ -213,9 +226,17 @@ body {
   margin-top: 2rem;
 }
 
-.letter-density h2 {
-  color: var(--primary-color);
+.letter-density h2,
+.letter-density p {
+  color: var(--second-color);
 }
+
+.letter-density p {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 1.5em;
+}
+
 .ld-list {
   list-style: none;
   margin: 0.75rem 0 0;
@@ -274,7 +295,6 @@ body {
 }
 .ld-toggle:hover {
   opacity: 1;
-  text-decoration: underline;
 }
 
 /* ===== Character limit panel ===== */
@@ -342,12 +362,36 @@ body {
   border-color: #ef4444;
 }
 
-/* Optional: make panel blend with your controls row */
-.controls__options {
-  display: flex;
-  gap: 1.25rem;
-  align-items: center;
-  flex-wrap: wrap;
+/* Ensure FA uses its own webfont (not DM Sans) */
+.fa,
+.fa-solid,
+.fa-regular,
+.fa-light,
+.fa-thin,
+.fa-duotone,
+.fa-brands {
+  font-family: "Font Awesome 6 Free" !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.fa-solid {
+  font-weight: 900 !important;
+}
+
+/* If a reset removed the glyph, restore it explicitly */
+.fa-angle-down::before {
+  content: "\f107";
+} /* angle-down */
+
+/* Your icon styling */
+#ld-toggle .fa-angle-down {
+  color: #fff;
+  line-height: 1;
+}
+#ld-toggle[aria-expanded="true"] .fa-angle-down {
+  transform: rotate(180deg);
+  transition: transform 0.2s ease;
 }
 
 @media (max-width: 991px) {

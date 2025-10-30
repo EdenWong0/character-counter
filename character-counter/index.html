@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Character counter" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css"
+    />
     <link rel="stylesheet" href="css/style.css" />
     <link
       rel="icon"
@@ -78,6 +82,7 @@
         <!-- Letter Density -->
         <div class="letter-density">
           <h2>Letter Density</h2>
+          <p>No characters found. Start typing to see letter density.</p>
 
           <ul id="letter-density-list" class="ld-list"></ul>
 
@@ -88,10 +93,8 @@
             aria-expanded="false"
             aria-controls="letter-density-list"
           >
-            See more
-            <span aria-hidden="true"
-              ><i class="fa-solid fa-angle-down"></i
-            ></span>
+            <span class="ld-label">See more</span>
+            <i class="fa-solid fa-angle-down" aria-hidden="true"></i>
           </button>
         </div>
       </div>

@@ -1,6 +1,3 @@
-/* =========================
-   Theme toggle (as-is)
-========================= */
 const toggleBtn = document.getElementById("themeToggle");
 const logo = document.getElementById("logo");
 const root = document.documentElement;
@@ -8,12 +5,12 @@ const root = document.documentElement;
 if (toggleBtn) {
   toggleBtn.addEventListener("click", () => {
     const currentTheme = root.getAttribute("data-theme");
-    if (currentTheme === "light-theme") {
+    if (currentTheme === "light") {
       root.setAttribute("data-theme", "dark-theme");
       if (logo) logo.src = "./assets/images/logo-dark-theme.svg";
       toggleBtn.src = "./assets/images/icon-sun.svg";
     } else {
-      root.setAttribute("data-theme", "light-theme");
+      root.setAttribute("data-theme", "light");
       if (logo) logo.src = "./assets/images/logo-light-theme.svg";
       toggleBtn.src = "./assets/images/icon-moon.svg";
     }
@@ -43,7 +40,9 @@ function hideLimitUI() {
   };
   if (!els.text) return;
 
-  // ---- character-limit inline UI (injected next to .controls__options)
+  // Paragraph message shown when no characters are typed
+  const noCharsMsg = document.querySelector(".letter-density p");
+
   let limitWrap = null,
     limitInput = null,
     limitRemain = null;
@@ -57,7 +56,6 @@ function hideLimitUI() {
     limitWrap.style.display = "flex";
     limitWrap.style.alignItems = "center";
     limitWrap.style.gap = "0.5rem";
-    limitWrap.style.marginTop = "0.5rem";
 
     const label = document.createElement("span");
     label.textContent = "Limit:";
@@ -66,7 +64,7 @@ function hideLimitUI() {
     limitInput.type = "number";
     limitInput.min = "1";
     limitInput.step = "1";
-    limitInput.value = "280";
+    limitInput.value = "100";
     limitInput.style.width = "6rem";
 
     limitRemain = document.createElement("span");
@@ -123,7 +121,6 @@ function hideLimitUI() {
       ? str.replace(/\s+/g, "").length
       : str.length;
 
-  // Enforce limit but keep spaces if Exclude Spaces is on
   function enforceLimit(str, limit) {
     if (limit == null) return str;
     if (!els.excludeSpaces || !els.excludeSpaces.checked) {
@@ -149,9 +146,16 @@ function hideLimitUI() {
     limitRemain.textContent = `${used}/${activeLimit}`;
   }
 
-  // ---- Main updater
   function update() {
-    // apply active limit if any
+    // Hide or show the "no characters found" message
+    if (noCharsMsg) {
+      if (els.text.value.trim().length > 0) {
+        noCharsMsg.style.display = "none";
+      } else {
+        noCharsMsg.style.display = "block";
+      }
+    }
+
     if (activeLimit != null) {
       const used = modeCount(els.text.value);
       if (used > activeLimit) {
@@ -186,7 +190,7 @@ function hideLimitUI() {
     if (els.readingTime) {
       els.readingTime.textContent = minutes
         ? `Approx. reading time: ${minutes} minute${minutes > 1 ? "s" : ""}`
-        : "Approx. reading time: < 1 minute";
+        : "Approx. reading time: 0 minute";
     }
 
     computeLetterDensity(raw);
@@ -209,13 +213,15 @@ function hideLimitUI() {
 
     lastLD = { entries, totalLetters: total };
 
+    const labelEl = els.ldToggle?.querySelector(".ld-label");
+
     if (els.ldToggle) {
       const needToggle = entries.length > TOP_N;
       els.ldToggle.style.display = needToggle ? "inline-flex" : "none";
       if (!needToggle) {
         ldShowAll = false;
         els.ldToggle.setAttribute("aria-expanded", "false");
-        els.ldToggle.textContent = "See more";
+        if (labelEl) labelEl.textContent = "See more";
       }
     }
     renderLetterDensity();
@@ -256,7 +262,6 @@ function hideLimitUI() {
     }
   }
 
-  // ---- Events (debounced)
   let rafId = 0;
   const scheduleUpdate = () => {
     cancelAnimationFrame(rafId);
@@ -268,7 +273,6 @@ function hideLimitUI() {
 
   if (els.excludeSpaces)
     els.excludeSpaces.addEventListener("change", () => {
-      // re-enforce under new mode
       if (activeLimit != null) {
         els.text.value = enforceLimit(els.text.value, activeLimit);
       }
@@ -276,9 +280,11 @@ function hideLimitUI() {
     });
 
   if (els.ldToggle) {
+    const labelEl = els.ldToggle.querySelector(".ld-label");
+
     els.ldToggle.addEventListener("click", () => {
       ldShowAll = !ldShowAll;
-      els.ldToggle.textContent = ldShowAll ? "See less" : "See more";
+      if (labelEl) labelEl.textContent = ldShowAll ? "See less" : "See more";
       els.ldToggle.setAttribute("aria-expanded", String(ldShowAll));
       renderLetterDensity();
     });
@@ -290,8 +296,7 @@ function hideLimitUI() {
         ensureLimitUI();
         const v = parseInt(limitInput.value, 10);
         activeLimit = Number.isFinite(v) && v > 0 ? v : 280;
-        limitWrap.hidden = false; // show panel
-        // enforce immediately under current mode
+        limitWrap.hidden = false;
         els.text.value = enforceLimit(els.text.value, activeLimit);
         updateLimitRemain();
       } else {
@@ -301,6 +306,5 @@ function hideLimitUI() {
     });
   }
 
-  // Initial paint
   update();
 })();
