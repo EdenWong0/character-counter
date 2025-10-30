@@ -24,7 +24,7 @@
     <title>Frontend Mentor | Character counter</title>
   </head>
   <body>
-    <header class="header-container">
+    <div class="header-container">
       <img
         id="logo"
         src="./assets/images/logo-dark-theme.svg"
@@ -36,7 +36,7 @@
         alt="Light / Dark mode toggle"
         class="light-dark-toggle"
       />
-    </header>
+    </div>
 
     <main>
       <div class="container">
@@ -50,7 +50,7 @@
             placeholder="Start typing here... (or paste your text)"
           ></textarea>
         </div>
-        <section class="controls">
+        <div class="controls">
           <div class="controls__options">
             <label>
               <input type="checkbox" id="exclude-spaces" />
@@ -64,8 +64,8 @@
           <div class="controls__info">
             <span id="reading-time">Approx. reading time: 0 minute</span>
           </div>
-        </section>
-        <section class="counter-cards">
+        </div>
+        <div class="counter-cards">
           <div class="counter-card purple">
             <div class="counter-value" id="char-count">00</div>
             <div class="counter-label">Total Characters</div>
@@ -78,10 +78,10 @@
             <div class="counter-value" id="sentence-count">00</div>
             <div class="counter-label">Sentence Count</div>
           </div>
-        </section>
+        </div>
 
         <!-- Letter Density -->
-        <section class="letter-density">
+        <div class="letter-density">
           <h2>Letter Density</h2>
           <p>No characters found. Start typing to see letter density.</p>
 
@@ -97,7 +97,7 @@
             <span class="ld-label">See more</span>
             <i class="fa-solid fa-angle-down" aria-hidden="true"></i>
           </button>
-        </section>
+        </div>
       </div>
     </main>
 
