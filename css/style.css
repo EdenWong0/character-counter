@@ -267,7 +267,7 @@ body {
 .ld-bar-fill {
   height: 100%;
   width: 0%;
-  background: var(--accent-color, #b39dfa); /* purple */
+  background: var(--accent-color, #b39dfa);
   border-radius: inherit;
   transition: width 0.25s ease;
 }
@@ -280,7 +280,6 @@ body {
   color: var(--primary-color);
 }
 
-/* Toggle sits UNDER the bars, left aligned */
 .ld-toggle {
   display: inline-flex;
   align-items: center;
@@ -297,7 +296,6 @@ body {
   opacity: 1;
 }
 
-/* ===== Character limit panel ===== */
 .char-limit {
   display: flex;
   align-items: center;
@@ -316,7 +314,6 @@ body {
   font-weight: 600;
 }
 
-/* Number input (dark) */
 .char-limit__input {
   width: 6rem;
   padding: 0.35rem 0.55rem;
@@ -340,7 +337,6 @@ body {
   box-shadow: 0 0 0 3px color-mix(in oklab, #8b5cf6 35%, transparent);
 }
 
-/* Used/total counter */
 .char-limit__meter {
   min-width: 4.2rem;
   text-align: right;
@@ -349,7 +345,6 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
-/* State colors: near limit (amber), at/over (red) */
 .char-limit[data-state="near"] .char-limit__meter,
 .char-limit[data-state="near"] .char-limit__input {
   color: #f59e0b;
@@ -362,7 +357,6 @@ body {
   border-color: #ef4444;
 }
 
-/* Ensure FA uses its own webfont (not DM Sans) */
 .fa,
 .fa-solid,
 .fa-regular,
@@ -379,12 +373,10 @@ body {
   font-weight: 900 !important;
 }
 
-/* If a reset removed the glyph, restore it explicitly */
 .fa-angle-down::before {
   content: "\f107";
-} /* angle-down */
+}
 
-/* Your icon styling */
 #ld-toggle .fa-angle-down {
   color: #fff;
   line-height: 1;
@@ -424,5 +416,15 @@ body {
   h1 {
     max-width: 100%;
     padding-top: 1em;
+  }
+}
+
+@media (max-width: 320px) {
+  .header-container {
+    gap: 1rem;
+  }
+  .header-container img {
+    max-width: 180px;
+    width: 100%;
   }
 }

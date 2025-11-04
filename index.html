@@ -24,19 +24,21 @@
     <title>Frontend Mentor | Character counter</title>
   </head>
   <body>
-    <div class="header-container">
-      <img
-        id="logo"
-        src="./assets/images/logo-dark-theme.svg"
-        alt="Character counter"
-      />
-      <img
-        id="themeToggle"
-        src="./assets/images/icon-sun.svg"
-        alt="Light / Dark mode toggle"
-        class="light-dark-toggle"
-      />
-    </div>
+    <header>
+      <div class="header-container">
+        <img
+          id="logo"
+          src="./assets/images/logo-dark-theme.svg"
+          alt="Character counter"
+        />
+        <img
+          id="themeToggle"
+          src="./assets/images/icon-sun.svg"
+          alt="Light / Dark mode toggle"
+          class="light-dark-toggle"
+        />
+      </div>
+    </header>
 
     <main>
       <div class="container">
@@ -65,7 +67,7 @@
             <span id="reading-time">Approx. reading time: 0 minute</span>
           </div>
         </div>
-        <div class="counter-cards">
+        <section class="counter-cards">
           <div class="counter-card purple">
             <div class="counter-value" id="char-count">00</div>
             <div class="counter-label">Total Characters</div>
@@ -78,10 +80,10 @@
             <div class="counter-value" id="sentence-count">00</div>
             <div class="counter-label">Sentence Count</div>
           </div>
-        </div>
+        </section>
 
         <!-- Letter Density -->
-        <div class="letter-density">
+        <section class="letter-density">
           <h2>Letter Density</h2>
           <p>No characters found. Start typing to see letter density.</p>
 
@@ -97,7 +99,7 @@
             <span class="ld-label">See more</span>
             <i class="fa-solid fa-angle-down" aria-hidden="true"></i>
           </button>
-        </div>
+        </section>
       </div>
     </main>
 
