@@ -53,8 +53,17 @@ body {
 }
 
 .visually-hidden {
-  visibility: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
+
 
 /* Header */
 .header-container {
@@ -110,7 +119,7 @@ body {
   gap: 1.5rem;
   align-items: center;
   font-size: 0.95rem;
-  color: var(--text-color);
+  color: var(--second-color);
 }
 
 .controls__options label {
@@ -166,14 +175,9 @@ body {
 }
 
 .counter-card {
-  border-radius: 10px;
-  padding: 2em;
-}
-
-.counter-card {
   width: 100%;
   height: 160px;
-  border-radius: 12px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -334,7 +338,7 @@ body {
 .char-limit__input:focus {
   outline: none;
   border-color: #8b5cf6;
-  box-shadow: 0 0 0 3px color-mix(in oklab, #8b5cf6 35%, transparent);
+  box-shadow: 0 0 0 3px color-mix(#8b5cf6 35%, transparent);
 }
 
 .char-limit__meter {
