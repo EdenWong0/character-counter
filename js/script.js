@@ -4,18 +4,23 @@ const root = document.documentElement;
 
 if (toggleBtn) {
   toggleBtn.addEventListener("click", () => {
+    const img = toggleBtn.querySelector("img");
     const currentTheme = root.getAttribute("data-theme");
+
     if (currentTheme === "light") {
       root.setAttribute("data-theme", "dark-theme");
       if (logo) logo.src = "./assets/images/logo-dark-theme.svg";
-      toggleBtn.src = "./assets/images/icon-sun.svg";
+      img.src = "./assets/images/icon-sun.svg";
+      toggleBtn.setAttribute("aria-label", "Switch to light mode");
     } else {
       root.setAttribute("data-theme", "light");
       if (logo) logo.src = "./assets/images/logo-light-theme.svg";
-      toggleBtn.src = "./assets/images/icon-moon.svg";
+      img.src = "./assets/images/icon-moon.svg";
+      toggleBtn.setAttribute("aria-label", "Switch to dark mode");
     }
   });
 }
+
 
 // add next to ensureLimitUI()
 function hideLimitUI() {
